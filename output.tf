@@ -27,7 +27,7 @@ output "primary_vc_string" {
       -H "Content-Type: application/json" \
       -H "X-Auth-Token: $AUTH_TOKEN" \
       --data '{
-        "peer_asn":"${var.peer_asn}",
+        "peer_asn": ${var.peer_asn},
         "subnet":"${var.peering_subnet_first}",
         "metal_ip":"${var.metal_peer_ip_first}",
         "customer_ip":"${var.customer_peer_ip_first}",
@@ -46,7 +46,7 @@ output "secondary_vc_string" {
       -H "Content-Type: application/json" \
       -H "X-Auth-Token: $AUTH_TOKEN" \
       --data '{
-        "peer_asn":"${var.peer_asn}",
+        "peer_asn": ${var.peer_asn},
         "subnet":"${var.peering_subnet_second}",
         "metal_ip":"${var.metal_peer_ip_second}",
         "customer_ip":"${var.customer_peer_ip_second}",
