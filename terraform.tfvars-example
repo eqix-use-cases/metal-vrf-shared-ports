@@ -1,0 +1,60 @@
+project_id = ""
+
+metal_cluster = {
+  "amsterdam1" = {
+    plan             = "m3.small.x86"
+    metro            = "am"
+    operating_system = "ubuntu_22_04"
+    billing_cycle    = "hourly"
+    network_type     = "hybrid-bonded"
+    port_name        = "bond0"
+    ip               = "192.168.105.101"
+    netmask          = "255.255.255.0"
+  },
+  "amsterdam2" = {
+    plan             = "m3.small.x86"
+    metro            = "am"
+    operating_system = "ubuntu_22_04"
+    billing_cycle    = "hourly"
+    network_type     = "hybrid-bonded"
+    port_name        = "bond0"
+    ip               = "192.168.105.102"
+    netmask          = "255.255.255.0"    
+  }
+}
+
+vxlan = 1005
+metal_asn = 65100
+ip_ranges = ["169.254.31.0/24","169.254.32.0/24","192.168.105.0/24"]
+ip_block_type = "vrf"
+ip_block = "192.168.105.0"
+ip_block_cidr = 24
+
+// interconnection from metal
+service_token_type = "z_side" // fabric billed
+connection_type = "shared" // type of connection for the vrf 
+connection_redundancy = "redundant"
+connection_speed = "1gbps"
+
+// peering first circuit
+peer_asn = 65101
+peering_subnet_first = "169.254.31.0/30"
+metal_peer_ip_first = "169.254.31.1"
+customer_peer_ip_first = "169.254.31.2"
+
+// peering second circuit
+peering_subnet_second = "169.254.32.0/30"
+metal_peer_ip_second = "169.254.32.1"
+customer_peer_ip_second = "169.254.32.2"
+
+bgp_password = ""
+
+// network edge
+notification_email = ["email@email.equinix.com"]
+route_os = "C8000V"
+route_os_version = "17.06.05"
+package_code = "network-essentials"
+core_count = 2
+term_length = 12
+dc_code = "DA"
+account_name = ""
